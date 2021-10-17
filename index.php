@@ -37,7 +37,7 @@ if (isset($_GET["cari"])) {
 </head>
 
 <body style="font-size: 24px;">
-<nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color: #979890;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color: #979890;">
         <div class="container"><img src="assets/img/toko.png" style="width: 5%;"><a class="navbar-brand" href="#" style="font-size: 20px;">TOKO SALSABILA</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav mr-auto" style="font-size: medium;">
@@ -46,20 +46,30 @@ if (isset($_GET["cari"])) {
                     <li class="h5" role="presentation"><a class="nav-link" href="#">CONTACT</a></li>
                 </ul>
                 <form action="" method="get" class="w-50">
-                    <input type="text" name="keyword" placeholder="Cari Barang.." autocomplete="off" style="width: 40%;">
+                    <input type="text" name="keyword" placeholder="Cari Barang.." autocomplete="off" style="width: 50%;">
                     <a class="btn btn-light action-button" namespace="sada" role="button" href="#" style="background-color: rgba(206,207,234,0);">
                         <button type="submit" name="cari">
-                            <i class="fa fa-search" style="font-size: 50px;"></i>
+                            <i class="fa fa-search" style="width: fit-content;"></i>
                         </button>
                     </a>
-                    <a class="btn btn-light action-button" role="button" href="Keranjang.php" style="background-color: rgba(206,207,234,0);"><i class="fa fa-shopping-cart" style="font-size: 50px;"></i>
+                    <a class="btn btn-light" role="button" href="Keranjang.php" style="background-color: rgba(206,207,234,0);">
+                    <i class="fa fa-shopping-cart" style="font-size: 30px;"></i>
+                    </a>
                 </form>
                 <span class="navbar-text actions">
-                    <ul class="nav navbar-nav mr-auto"></ul>
+                    
                     <span class="navbar-text actions">
                         <?php if (isset($_SESSION['loginPelanggan'])) : ?>
-                            <a class="btn btn-light action-button w-5 p-2 mr-2" role="button" href="riwayat.php">Riwayat</a>
-                            <a class="btn btn-light action-button w-5 p-2" role="button" href="admin/dist/logout.php">Keluar</a>
+                            <div class="btn-group">
+                                <a class="btn btn-light" href="#"><i class="fa fa-user"></i> <?= $_SESSION['loginPelanggan']['Nama'] ?></a>
+                                <a class="btn btn-light" data-toggle="dropdown" href="#">
+                                    <span class="fa fa-caret-down"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="riwayat.php"><i class="fa fa-pencil fa-fw"></i> Riwayat</a></li>
+                                    <li><a href="admin/dist/logout.php"><i class="fa fa-ban fa-fw"></i> Keluar</a></li>
+                                </ul>
+                            </div>
                         <?php else : ?>
                             <a class="btn btn-light action-button w-5 p-2 mr-2" role="button" href="login.php">Masuk</a>
                             <a class="btn btn-light action-button w-5 p-2" role="button" href="register.php">Daftar</a>
@@ -82,14 +92,12 @@ if (isset($_GET["cari"])) {
                             <div class="col-8">
                                 <h2><?= $row["nama_produk"]; ?></h2>
                             </div>
-                            <!-- <div class="col-4"><a class="small-text" href="#">compare </a></div> -->
                         </div>
-                        <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#">82 reviews</a></div>
                         <div class="row">
                             <div class="col-12">
                                 <p class="product-description"><?= substr($row["deskripsi"], 0, 100) . "[..]" ?></p>
                                 <div class="row">
-                                    <div class="col-6"><a href="beli-barang.php?id=<?= $row["id_produk"]; ?>" class="btn btn-primary" data-toggle="button" aria-pressed="false">Buy Now!</a></div>
+                                    <div class="col-6"><a href="beli-barang.php?id=<?= $row["id_produk"]; ?>" class="btn btn-info" data-toggle="button" aria-pressed="false">Beli</a></div>
                                     <div class="col-6">
                                         <p class="product-price">Rp <?= number_format($row["harga_produk"], 0, ",", "."); ?></p>
                                     </div>

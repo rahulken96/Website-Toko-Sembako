@@ -53,14 +53,15 @@ $totalHarga = 0;
                     <!-- <ul class="nav navbar-nav mr-auto"></ul> -->
                     <span class="navbar-text actions">
                         <?php if (isset($_SESSION['loginPelanggan'])) : ?>
-                            <div class="btn-group" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?= $_SESSION['loginPelanggan']['Nama'] ?>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="btn btn-light action-button w-5 p-2 mr-2 dropdown-item" href="riwayat.php">Riwayat</a>
-                                    <a class="btn btn-light action-button w-5 p-2 dropdown-item" href="admin/dist/logout.php">Keluar</a>
-                                </div>
+                            <div class="btn-group">
+                                <a class="btn btn-light" href="#"><i class="fa fa-user"></i> <?= $_SESSION['loginPelanggan']['Nama'] ?></a>
+                                <a class="btn btn-light" data-toggle="dropdown" href="#">
+                                    <span class="fa fa-caret-down"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="riwayat.php"><i class="fa fa-pencil fa-fw"></i> Riwayat</a></li>
+                                    <li><a href="admin/dist/logout.php"><i class="fa fa-ban fa-fw"></i> Keluar</a></li>
+                                </ul>
                             </div>
                         <?php else : ?>
                             <a class="btn btn-light action-button w-5 p-2" role="button" href="login.php">Masuk</a>
@@ -107,8 +108,8 @@ $totalHarga = 0;
                                         <div class="row">
                                             <div class="col-12 col-sm-6">
                                                 <form>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="number" placeholder="Qty" min="1" value="<?= $jumlah ?>" name="qty" readonly>
+                                                    <div class="qty-input form-group">
+                                                        <input class="qty-input form-group" type="number" placeholder="Jumlah.." min="1" value="<?= $jumlah ?>" name="jumlah" readonly>
                                                     </div>
                                                 </form>
                                                 <div>
@@ -118,8 +119,9 @@ $totalHarga = 0;
                                                 x Rp <?= number_format($barang["harga_produk"], 0, ",", "."); ?>
                                             </div>
                                         </div>
-                                        <a href="hapus-barang.php?id=<?= $id_produk ?>" class="btn btn-danger btn-sm">Hapus</a>
-                                        <!-- <a href="http://" class="btn btn-info btn-sm">Ubah</a> -->
+                                        <a href="hapus-barang.php?id=<?= $id_produk ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus barang?')">Hapus</a>
+                                        <a href="" class="btn btn-warning btn-sm "><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        <a href="<?php ?>" class="btn btn-info btn-sm"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>

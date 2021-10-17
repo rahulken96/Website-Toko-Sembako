@@ -187,7 +187,9 @@ function login($data)
 {
     global $conn;
     $username = $data['username'];
+    $username = str_replace("'","",$username);
     $password = $data['password'];
+    $password = str_replace("'","",$password);
 
     $result = mysqli_query($conn, "SELECT * FROM `pelanggan` WHERE `username`='$username' AND `password`='$password'");
 
